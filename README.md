@@ -14,7 +14,7 @@ para guardar la rama es
 
 git push origin ramahector
 
-Comando rapido para ti: 
+**Comando rapido para ti**: 
 
 git checkout-b ramahector;
 
