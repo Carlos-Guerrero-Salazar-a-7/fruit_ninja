@@ -9,10 +9,10 @@ para guardar la rama es
 git push origin ramahector
 
 Comando rapido para ti: 
-git checkout-b ramahector; 
-git add . 
-git status 
-git commit -m "entregado el dia de hoy" 
-git push origin ramahector 
-usuario:2430033 
+git checkout-b ramahector; \n
+git add . \n
+git status \n
+git commit -m "entregado el dia de hoy" \n
+git push origin ramahector \n
+usuario:2430033 \n
 contraseña o token: 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
