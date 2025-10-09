@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo (no frogger)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="controls">
+    <button id="startButton">Iniciar Juego</button>
+    <button id="resetButton">Reiniciar Juego</button>
+</div>
+
+<canvas id="gameCanvas" width="600" height="400"></canvas>
+<p id="displayCoords">Mouse position: X: -, Y: -</p>
+
+    <script>
+        const hoverArea = document.getElementById('gameCanvas');
+        const displayCoords = document.getElementById('displayCoords');
+
+        hoverArea.addEventListener('mousemove', (event) => {
+            const x = event.clientX; // X-coordinate relative to the viewport
+            const y = event.clientY; // Y-coordinate relative to the viewport
+            displayCoords.textContent = `Mouse position: X: ${x-hoverArea.getAttribute("width")}, Y: ${y-hoverArea.getAttribute("height")}`;
+        });
+
+        // Optional: Clear the coordinates when the mouse leaves the area
+        hoverArea.addEventListener('mouseout', () => {
+            displayCoords.textContent = 'Mouse position: X: -, Y: -';
+        });
+    </script>
+<script src="script.js"></script>
+
+</body>
+</html>
