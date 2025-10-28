@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Agregar punto al trazo
         trazo.push({x: x, y: y});
         
-        // Mantener solo los últimos puntos
+        // cambio de los últimos puntos
         if(trazo.length > maxPuntosTrazo) {
             trazo.shift();
         }
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const espaciado = canvas.width * 0.05;
         
         for(let i = 0; i < 3; i++) {
-            const tamaño = tamañoBase + (i * canvas.width * 0.01); // Cada tacha es más grande
+            const tamaño = tamañoBase + (i * canvas.width * 0.01);
             const x = margen + (i * espaciado);
             const y = canvas.height - margen - tamaño;
             const grosor = canvas.width * 0.003;
@@ -129,11 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
             dibujarTachas();
             if (this.imagen && this.imagen.complete) {
                ctx.save();
-                // Trasladar al centro del objeto
                 ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
-                // Rotar usando el ángulo actual
                 ctx.rotate(this.angle);
-                // Dibujar centrado
                 ctx.drawImage(this.imagen, -this.width / 2, -this.height / 2, this.width, this.height);
                 ctx.restore();
             }
@@ -145,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.y -= this.dy;
 
                 if(!this.esDivision) {
-                    this.angle += this.dx * 0.05; // La rotación es proporcional a dx
+                    this.angle += this.dx * 0.05;
                 }
                 if(this.y <= this.hmax){
                     this.dy -= 0.4;
@@ -234,8 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.width / 2,
                 this.height,
                 velocidadCaida,
-                this.dx * -1.5, // Separación hacia la izquierda
-                this.y - 999999, // hmax muy bajo para que nunca frene
+                this.dx * -1.5,
+                this.y - 999999, // Altura máxima muy alta para que solo caiga
                 this.angle,
                 20,
                 imgMitad1,
@@ -249,8 +246,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.width / 2,
                 this.height,
                 velocidadCaida,
-                this.dx * 1.5, // Separación hacia la derecha
-                this.y - 999999, // hmax muy bajo para que nunca frene
+                this.dx * 1.5,
+                this.y - 999999, // Altura máxima muy alta para que solo caiga
                 this.angle,
                 0,
                 imgMitad2,
@@ -303,20 +300,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
         }
         
-        // Decidir lado de spawn
         const centroCanvas = canvas.width / 2;
         let x, dx;
         const spawnDesdeIzquierda = Math.random() < 0.5;
         
         if(spawnDesdeIzquierda) {
-            // Spawn desde el lado izquierdo (0 a 30% del ancho)
             x = Math.random() * (canvas.width * 0.3);
-            // Dirección hacia el centro-derecha
             dx = 0.5 + Math.random() * 2; // Velocidad horizontal positiva
         } else {
-            // Spawn desde el lado derecho (70% a 100% del ancho)
             x = canvas.width * 0.7 + Math.random() * (canvas.width * 0.3) - width;
-            // Dirección hacia el centro-izquierda
             dx = -(0.5 + Math.random() * 2); // Velocidad horizontal negativa
         }
         
