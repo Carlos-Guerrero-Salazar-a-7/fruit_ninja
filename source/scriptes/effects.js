@@ -1,7 +1,8 @@
 // source/scriptes/effects.js
 
-export class Efecto { // <--- EXPORTADO
-    constructor(x, y, spritesheet, frameWidth, frameHeight, totalFrames, fps, escala = 1) {
+export class Efecto {
+    // AÑADIDO: 'row' para seleccionar la fila vertical en el spritesheet (0 = primera fila)
+    constructor(x, y, spritesheet, frameWidth, frameHeight, totalFrames, fps, escala = 1, row = 0) {
         this.x = x;
         this.y = y;
         this.spritesheet = spritesheet;
@@ -14,6 +15,7 @@ export class Efecto { // <--- EXPORTADO
         this.tiempoAcumulado = 0;
         this.terminado = false;
         this.escala = escala;
+        this.row = row; // Guarda el índice de la fila
     }
 
     update(deltaTime) {
@@ -35,7 +37,8 @@ export class Efecto { // <--- EXPORTADO
         }
 
         const frameX = this.frameActual * this.frameWidth;
-        const frameY = 0; 
+        // MODIFICADO: Ahora frameY se calcula basado en la fila seleccionada (this.row)
+        const frameY = this.row * this.frameHeight; 
 
         ctx.save();
         ctx.translate(this.x, this.y);
